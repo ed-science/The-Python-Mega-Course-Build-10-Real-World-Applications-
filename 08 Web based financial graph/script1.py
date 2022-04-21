@@ -20,12 +20,11 @@ def plot():
 
     def inc_dec(c, o):
         if c > o:
-            value="Increase"
+            return "Increase"
         elif c < o:
-            value="Decrease"
+            return "Decrease"
         else:
-            value="Equal"
-        return value
+            return "Equal"
 
     df["Status"]=[inc_dec(c,o) for c, o in zip(df.Close,df.Open)]
     df["Middle"]=(df.Open+df.Close)/2

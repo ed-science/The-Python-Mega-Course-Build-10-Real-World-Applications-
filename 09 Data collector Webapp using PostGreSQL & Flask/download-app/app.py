@@ -29,8 +29,8 @@ def success():
     global file
     if request.method=='POST':
         file=request.files["file"]
-        file.save(secure_filename("uploaded"+file.filename))
-        with open("uploaded"+file.filename,"a") as f:
+        file.save(secure_filename(f"uploaded{file.filename}"))
+        with open(f"uploaded{file.filename}", "a") as f:
             f.write("This was added later!")
         print(file)
         print(type(file))
@@ -38,7 +38,11 @@ def success():
 
 @app.route("/download")
 def download():
-    return send_file("uploaded"+file.filename, attachment_filename="yourfile.csv", as_attachment=True)
+    return send_file(
+        f"uploaded{file.filename}",
+        attachment_filename="yourfile.csv",
+        as_attachment=True,
+    )
 
 
 if __name__ == '__main__':
